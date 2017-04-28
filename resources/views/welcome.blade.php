@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    laratter_5p4
                 </div>
 
                 <div class="links">
