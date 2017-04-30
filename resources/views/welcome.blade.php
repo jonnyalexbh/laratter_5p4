@@ -20,8 +20,13 @@
   <div class="row">
     <form class="" action="/messages/create" method="post">
       {{ csrf_field() }}
-      <div class="form-group">
+      <div class="form-group @if($errors->has('message')) has-danger @endif">
         <input type="text" name="message" value="" class="form-control" placeholder="what are you thinking ?">
+        @if ($errors->has('message'))
+          @foreach ($errors->get('message') as $error)
+            <div class="form-control-feedback">{{$error}}</div>
+          @endforeach
+        @endif
       </div>
     </form>
   </div>
