@@ -1,23 +1,33 @@
 <!--
 * Jonnyalexbh
-* @Description: view welcome 
+* @Description: view welcome
 -->
 @extends('layouts.app')
 
 @section('content')
 
-  <div class="title m-b-md">
-    laratter_5p4
+  <div class="jumbotron text-center">
+    <h1>Laratter</h1>
+    <nav>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+      </ul>
+    </nav>
   </div>
-  @if(isset($teacher))
-    <p>Teacher: {{ $teacher }}</p>
-  @else
-    <p>Teacher to define</p>
-  @endif
-  <div class="links">
-    @foreach ($links as $link => $text)
-      <a href="{{ $link }}">{{ $text }}</a>
-    @endforeach
+
+  <div class="row">
+    @forelse ($messages as $message)
+      <div class="col-6">
+        <img class="img-thumbnail" src="{{$message['image']}}" alt="">
+        <p class="card-text">{{$message['content']}}
+          <a href="/messages/{{$message['id']}}">see more</a>
+        </p>
+      </div>
+    @empty
+      <p>No messages</p>
+    @endforelse
   </div>
 
 @endsection

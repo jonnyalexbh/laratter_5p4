@@ -11,17 +11,31 @@ class PagesController extends Controller
   *
   */
   public function home(){
-    $links = [
-      'https://laravel.com/' => 'Home laravel',
-      'https://laravel.com/docs/5.4' => 'Documentation laravel'
+    $messages = [
+      [
+        'id' => 1,
+        'content' => 'This is my first message',
+        'image' => 'http://lorempixel.com/600/338?1'
+      ],
+      [
+        'id' => 2,
+        'content' => 'This is my second message',
+        'image' => 'http://lorempixel.com/600/338?2'
+      ],
+      [
+        'id' => 3,
+        'content' => 'This is my Third message',
+        'image' => 'http://lorempixel.com/600/338?3'
+      ],
+      [
+        'id' => 4,
+        'content' => 'This is my fourth message',
+        'image' => 'http://lorempixel.com/600/338?4'
+      ]
     ];
-    return view('welcome', ['links' => $links, 'teacher' => 'jonnyalexbh']);
+    return view('welcome', [
+      'messages' => $messages,
+    ]);
   }
-  /**
-  * aboutUs
-  *
-  */
-  public function aboutUs(){
-    return view('about');
-  }
+
 }
