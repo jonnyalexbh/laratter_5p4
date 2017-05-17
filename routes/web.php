@@ -18,6 +18,9 @@ Route::post('/messages/create', 'MessagesController@create')->middleware('auth')
 
 Auth::routes();
 
+Route::get('/auth/facebook', 'SocialAuthController@facebook');
+Route::get('/auth/facebook/callback', 'SocialAuthController@callback');
+
 Route::get('/{username}/follows', 'UsersController@follows');
 Route::get('/{username}/followers', 'UsersController@followers');
 Route::post('/{username}/follow', 'UsersController@follow');
