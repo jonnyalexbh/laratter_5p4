@@ -785,7 +785,7 @@ window.Vue = __webpack_require__(38);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(35));
+Vue.component('responses', __webpack_require__(35));
 
 var app = new Vue({
   el: '#app'
@@ -1660,11 +1660,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
+  props: ['message'],
+  data: function data() {
+    return {
+      responses: []
+    };
+  },
+
+
+  methods: {
+    load: function load() {
+      var _this = this;
+
+      axios.get('/api/messages/' + this.message + '/responses').then(function (res) {
+        _this.responses = res.data;
+      });
     }
+  }
 });
 
 /***/ }),
@@ -34631,9 +34646,9 @@ var Component = __webpack_require__(36)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Applications/MAMP/htdocs/laratter_5p4/resources/assets/js/components/Example.vue"
+Component.options.__file = "/Applications/MAMP/htdocs/laratter_5p4/resources/assets/js/components/Responses.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] Responses.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -34642,9 +34657,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0c3154db", Component.options)
+    hotAPI.createRecord("data-v-223df183", Component.options)
   } else {
-    hotAPI.reload("data-v-0c3154db", Component.options)
+    hotAPI.reload("data-v-223df183", Component.options)
   }
 })()}
 
@@ -34713,27 +34728,33 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "container"
-  }, [_c('div', {
     staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-2"
-  }, [_c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
-}]}
+  }, [_c('a', {
+    staticClass: "btn btn-outline-primary",
+    attrs: {
+      "href": "#"
+    },
+    on: {
+      "click": _vm.load
+    }
+  }, [_vm._v("Ver respuestas")]), _vm._v(" "), _vm._l((_vm.responses), function(response) {
+    return _c('div', {
+      staticClass: "col-12 mt-2"
+    }, [_c('div', {
+      staticClass: "card"
+    }, [_c('div', {
+      staticClass: "card-block"
+    }, [_vm._v("\n        " + _vm._s(response.message) + "\n      ")]), _vm._v(" "), _c('div', {
+      staticClass: "card-footer text-muted"
+    }, [_vm._v("\n        " + _vm._s(response.created_at) + "\n      ")])])])
+  })], 2)
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0c3154db", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-223df183", module.exports)
   }
 }
 
