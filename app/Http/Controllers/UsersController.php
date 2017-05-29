@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+  /**
+  * show
+  *
+  */
   public function show($username)
   {
     $user = $this->findByUsername($username);
@@ -18,7 +22,10 @@ class UsersController extends Controller
       'user' => $user,
     ]);
   }
-
+  /**
+  * follow
+  *
+  */
   public function follow($username, Request $request)
   {
     $user = $this->findByUsername($username);
@@ -31,7 +38,10 @@ class UsersController extends Controller
 
     return redirect("/$username")->withSuccess('Usuario seguido!');
   }
-
+  /**
+  * unfollow
+  *
+  */
   public function unfollow($username, Request $request)
   {
     $user = $this->findByUsername($username);
@@ -42,7 +52,10 @@ class UsersController extends Controller
 
     return redirect("/$username")->withSuccess('Usuario no seguido!');
   }
-
+  /**
+  * follows
+  *
+  */
   public function follows($username)
   {
     $user = $this->findByUsername($username);
@@ -52,7 +65,10 @@ class UsersController extends Controller
       'follows' => $user->follows,
     ]);
   }
-
+  /**
+  * followers
+  *
+  */
   public function followers($username)
   {
     $user = $this->findByUsername($username);
@@ -62,7 +78,10 @@ class UsersController extends Controller
       'follows' => $user->followers,
     ]);
   }
-
+  /**
+  * sendPrivateMessage
+  *
+  */
   public function sendPrivateMessage($username, Request $request)
   {
     $user = $this->findByUsername($username);
@@ -80,7 +99,10 @@ class UsersController extends Controller
 
     return redirect('/conversations/'.$conversation->id);
   }
-
+  /**
+  * showConversation
+  *
+  */
   public function showConversation(Conversation $conversation)
   {
     $conversation->load('users', 'privateMessages');
@@ -90,9 +112,20 @@ class UsersController extends Controller
       'user' => auth()->user(),
     ]);
   }
-
+  /**
+  * findByUsername
+  *
+  */
   private function findByUsername($username)
   {
     return User::where('username', $username)->firstOrFail();
+  }
+  /**
+  * notifications
+  *
+  */
+  public function notifications(Request $request)
+  {
+    return $request->user()->notifications;
   }
 }
