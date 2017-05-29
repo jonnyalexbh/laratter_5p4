@@ -56,5 +56,13 @@ class MessagesController extends Controller
 
     return view('messages.index', ['messages' => $messages,]);
   }
+  /**
+  * responses
+  *
+  */
+  public function responses(Message $message)
+  {
+    return $message->responses;
+  }
 
 }
