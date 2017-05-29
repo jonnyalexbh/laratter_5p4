@@ -12,12 +12,20 @@ class PagesController extends Controller
   *
   */
   public function home(){
-    
+
     $messages = Message::latest()->paginate(10);
 
     return view('welcome', [
       'messages' => $messages,
     ]);
+  }
+  /**
+  * locale
+  *
+  */
+  public function locale(Request $request){
+    session()->put('locale', $request->input('lang'));
+    return back();
   }
 
 }

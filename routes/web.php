@@ -14,6 +14,7 @@
 Route::get('/', 'PagesController@home');
 
 Route::get('/messages/{message}', 'MessagesController@show');
+Route::get('/locale', 'PagesController@locale');
 
 Auth::routes();
 
@@ -31,7 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 
   Route::post('/{username}/follow', 'UsersController@follow');
   Route::post('/{username}/unfollow', 'UsersController@unfollow');
-  
+
   Route::get('/api/notifications', 'UsersController@notifications');
 
 });
